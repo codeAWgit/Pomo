@@ -1,0 +1,31 @@
+button {
+    margin: 5px 0px 0px 20px;
+    display: block;
+    width: 150px;
+    font-size: 1.3em;    
+}
+
+#timer {
+    padding: 25px;
+    font-size: 4em;
+}
+
+#start {
+    padding: 4px;
+}
+
+#resume {
+    display: none;
+    padding: 4px;
+}
+
+
+#reset {
+    display: none;
+    padding: 4px;
+}
+
+#stop {
+    display: none;
+    padding: 4px;    
+}
