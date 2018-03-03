@@ -1,14 +1,31 @@
-button {
+.timerOptions {
     margin: 5px 0px 0px 20px;
     display: block;
     width: 150px;
     font-size: 1.3em;    
 }
 
+.chgTimer {
+    margin: 5px 0px 0px 20px;
+    width: 63px;
+    font-size: 1.3em;     
+}
+
 #timer {
     padding: 25px;
     font-size: 4em;
 }
+
+#breakTimer {
+    padding: 30px 0px 0px 35px;
+    font-size: 4em;
+}
+
+#breakTitle {
+    padding: 5px 0px 15px 10px;
+    font-size: 2em;
+}
+
 
 #start {
     padding: 4px;

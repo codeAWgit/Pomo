@@ -12,18 +12,27 @@
     <script defer="true" src="script.js"></script>
 </head>
 <body>
-    <div id="timer">25:00</div>
-    <button id="start" onclick="startTimer()">
+    <div id="timer"></div>
+    <button class="timerOptions" id="start" onclick="startTimer()">
         Start timer
     </button>
-    <button id="resume" onclick="resumeTimer()">
+    <button class="timerOptions" id="resume" onclick="resumeTimer()">
         Resume timer
     </button>
-    <button id="stop" onclick="stopTimer()">
+    <button class="timerOptions" id="stop" onclick="stopTimer()">
         Stop timer
     </button>
-    <button id="reset" onclick="stopTimer('reset')">
+    <button class="timerOptions" id="reset" onclick="stopTimer('reset')">
         Reset timer
     </button>
+    <button class="chgTimer" onclick="closure.timerIncMin()">/\</button>
+    <button class="chgTimer" onclick="closure.timerDecMin()">\/</button>
+
+    <div id="breakTimer"></div>
+    <div id="breakTitle">
+        Break length
+    </div>
+    <button class="chgTimer" onclick="closure.breakIncMin()">/\</button>
+    <button class="chgTimer" onclick="closure.breakDecMin()">\/</button>
 </body>
 </html>
