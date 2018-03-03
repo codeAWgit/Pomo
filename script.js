@@ -1,18 +1,18 @@
 'use strict'
-let endSetInterval, endBreakSetInterval, tDifference
 
 let closure = (function() {
+    let endSetInterval, endBreakSetInterval, tDifference, bDifference
     let timer = 1500
     let breakTimer = 300
 
     return {
-        timerIncMin: function() {
+        timerInc: function() {
             timer += 60
             if ( timer > 3601) timer = 3600           
             document.getElementById('timer').innerHTML =
                 this.timerString() 
         },
-        timerDecMin: function() {
+        timerDec: function() {
             timer -= 60
             if ( timer < 62) timer = 60
             document.getElementById('timer').innerHTML =
@@ -25,13 +25,13 @@ let closure = (function() {
         timerValue: function() { 
             return timer
         },
-        breakIncMin: function() {
+        breakInc: function() {
             breakTimer += 60
             if ( breakTimer > 1801) breakTimer = 1800           
             document.getElementById('breakTimer').innerHTML =
                 this.breakString() 
         },
-        breakDecMin: function() {
+        breakDec: function() {
             breakTimer -= 60
             if ( breakTimer < 62) breakTimer = 60
             document.getElementById('breakTimer').innerHTML =
@@ -54,22 +54,31 @@ document.getElementById('breakTimer').innerHTML = closure.breakString()
 function startTimer(timer = closure.timerValue()) {
     let startT = new Date().getTime()
 
-    endSetInterval = setInterval(countDown, 500)
+    closure.endSetInterval = setInterval(countDown, 500)
 
     function countDown() {
         let currT = new Date()
-        tDifference = currT.getTime() - startT
+        closure.tDifference = currT.getTime() - startT
 
-        tDifference = timer - tDifference/1000
+        closure.tDifference = timer - closure.tDifference/1000
 
-        if ( tDifference > .1 ) {
+        if ( closure.tDifference > .5 ) {
             document.getElementById('timer').innerHTML =
-                String( Math.floor( tDifference / 60 )) + ":" +
-                timerZeroes( Math.floor( tDifference % 60 ))
+                String( Math.floor( closure.tDifference / 60 )) + ":" +
+                timerZeroes( Math.floor( closure.tDifference % 60 ))
         }
         else {
-            //stopTimer('reset')
-            clearInterval(endSetInterval)
+            var chime = "sounds/solemn.mp3"
+                // use for fCC https://s3.amazonaws.com/freecodecamp/simonSound2.mp3           
+            var audio = new Audio(chime)
+            audio.play()    
+            
+            clearInterval(closure.endSetInterval)
+
+            document.getElementById('timer').innerHTML =
+                String( Math.floor( closure.timerValue() / 60 )) + ":" +
+                timerZeroes( Math.floor( closure.timerValue() % 60 )) 
+    
             breakTimer()
         }
 
@@ -80,21 +89,31 @@ function startTimer(timer = closure.timerValue()) {
 function breakTimer(breakTime = closure.breakValue()) {
     let startT = new Date().getTime()
 
-    endBreakSetInterval = setInterval(breakCountDown, 500)
+    closure.endBreakSetInterval = setInterval(breakCountDown, 500)
 
     function breakCountDown() {
         let currT = new Date()
-        tDifference = currT.getTime() - startT
+        closure.bDifference = currT.getTime() - startT
 
-        tDifference = breakTime - tDifference/1000
+        closure.bDifference = breakTime - closure.bDifference/1000
 
-        if ( tDifference > .1 ) {
+        if ( closure.bDifference > .4 ) {
             document.getElementById('breakTimer').innerHTML =
-                String( Math.floor( tDifference / 60 )) + ":" +
-                timerZeroes( Math.floor( tDifference % 60 ))
+                String( Math.floor( closure.bDifference / 60 )) + ":" +
+                timerZeroes( Math.floor( closure.bDifference % 60 ))
         }
         else {
-            clearInterval(endBreakSetInterval)
+            var chime = "sounds/serious-strike.mp3"
+                // use for fCC https://s3.amazonaws.com/freecodecamp/simonSound2.mp3
+            var audio = new Audio(chime)
+            audio.play()  
+
+            clearInterval(closure.endBreakSetInterval)
+
+            document.getElementById('breakTimer').innerHTML =
+                String( Math.floor( closure.breakValue() / 60 )) + ":" +
+                timerZeroes( Math.floor( closure.breakValue() % 60 ))  
+                
             startTimer()
         }
 
@@ -109,8 +128,8 @@ function timerZeroes(num) {
 }
 
 function stopTimer(rst = '') {
-    clearInterval(endSetInterval)
-    clearInterval(endBreakSetInterval)    
+    clearInterval(closure.endSetInterval)
+    clearInterval(closure.endBreakSetInterval)    
     if (rst) {
         document.getElementById('timer').innerHTML =
             closure.timerString()
@@ -124,8 +143,14 @@ function stopTimer(rst = '') {
 }
 
 function resumeTimer() {
-    startTimer(tDifference)
     setButtons('none', 'none', 'block', 'block', 'hidden')
+
+    if ( closure.tDifference > .1) {
+        startTimer(closure.tDifference)
+    }
+    else {
+        breakTimer(closure.bDifference)
+    }
 }
 
 function setButtons(s, rsm, stp, rst, chg) {

@@ -6,33 +6,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <title>Pomodoro Clock</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
     <link rel="stylesheet" href="style.css">
     
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
     <script defer="true" src="script.js"></script>
 </head>
 <body>
-    <div id="timer"></div>
-    <button class="timerOptions" id="start" onclick="startTimer()">
-        Start timer
-    </button>
-    <button class="timerOptions" id="resume" onclick="resumeTimer()">
-        Resume timer
-    </button>
-    <button class="timerOptions" id="stop" onclick="stopTimer()">
-        Stop timer
-    </button>
-    <button class="timerOptions" id="reset" onclick="stopTimer('reset')">
-        Reset timer
-    </button>
-    <button class="chgTimer" onclick="closure.timerIncMin()">/\</button>
-    <button class="chgTimer" onclick="closure.timerDecMin()">\/</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-md"></div>
+            <div class="col-md-3">
+                
+                    <div id="timer"></div>
+                    <div class="title">
+                            Timer length
+                    </div>    
 
-    <div id="breakTimer"></div>
-    <div id="breakTitle">
-        Break length
-    </div>
-    <button class="chgTimer" onclick="closure.breakIncMin()">/\</button>
-    <button class="chgTimer" onclick="closure.breakDecMin()">\/</button>
+                    <button class="timerOptions" id="start" onclick="startTimer()">
+                        Start timer
+                    </button>
+
+                    <button class="timerOptions" id="resume" onclick="resumeTimer()">
+                        Resume timer
+                    </button>
+
+                    <button class="timerOptions" id="stop" onclick="stopTimer()">
+                        Stop timer
+                    </button>
+
+                    <button class="timerOptions" id="reset" onclick="stopTimer('reset')">
+                        Reset timer
+                    </button>
+
+                    <button class="chgTimer" onclick="closure.timerInc()">/\</button>
+                    <button class="chgTimer" onclick="closure.timerDec()">\/</button>
+
+                    <div id="breakTimer"></div>
+                    <div class="title">
+                        Break length
+                    </div>
+
+                    <button class="chgTimer" onclick="closure.breakInc()">/\</button>
+                    <button class="chgTimer" onclick="closure.breakDec()">\/</button>
+                </div>
+            <div class="col-md"></div>
+        </div> <!-- row div -->
+    </div> <!-- container div -->
 </body>
 </html>
