@@ -1,7 +1,6 @@
 'use strict'
 
 let closure = (function() {
-    let endSetInterval, endBreakSetInterval, tDifference, bDifference
     let timer = 1500
     let breakTimer = 300
 
@@ -144,7 +143,7 @@ function stopTimer(rst = '') {
 
 function resumeTimer() {
     setButtons('none', 'none', 'block', 'block', 'hidden')
-
+    
     if ( closure.tDifference > .1) {
         startTimer(closure.tDifference)
     }
