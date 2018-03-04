@@ -1,3 +1,9 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: blanchedalmond
+}
+
 .timerOptions {
     margin: 5px 0px 0px 20px;
     display: block;
