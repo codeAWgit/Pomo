@@ -1,7 +1,7 @@
 'use strict'
 
 let closure = (function() {
-    let timer = 1500,   breakTimer = 300
+    let timer = 1140,   breakTimer = 60
 
     return {
         timerInc: function(x) {
